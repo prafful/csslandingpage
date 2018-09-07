@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HTMl5 New Form Elements</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <form>
+        <fieldset>
+            <legend>Personal Details</legend>
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" autofocus required placeholder="Your Full Name" value="Prafful Daga">
+            </div>
+            <div>
+                <label for="age">Age:</label>
+                <input type="number" min="18" max="40" step="5">
+            </div>
+
+            <div>
+                <label for="age">DOB:</label>
+                <input type="date" min="2018-09-09" step="7">
+            </div>
+
+            <div>
+                <label for="dob">DOB:</label>
+                <input type="date" min="2018-09-09" step="7">
+            </div>
+
+            <div>
+                <label for="color">Color:</label>
+                <input type="color">
+            </div>
+
+            <div>
+                <label for="range">Skill in HTML5:</label>
+                <input type="range" min="0" max="10" step="3">
+            </div>
+
+            <div>
+                    <label for="progress">Rate your learning:</label>
+                    <progress value="80" max="100" ></progress>
+                </div>
+        </fieldset>
+        <fieldset>
+            <legend>Address</legend>
+
+
+        </fieldset>
+        <fieldset>
+            <legend>Contact</legend>
+            <label for="email">Email:</label>
+            <input type="email" required>
+
+        </fieldset>
+        <br>
+        <button>Save</button>
+    </form>
+</body>
+
+</html>

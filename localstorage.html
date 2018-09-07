@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HTML5 LocalStorage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+</head>
+<body onload="domLoadedSuccess()">
+    <h1>HTML5 LocalStorage</h1>
+    Name: 
+    <input id="fullname" type="text" oninput="enableButton()">
+    <button id="saveButton" onclick="saveName()" >Save</button>
+
+    <script>
+
+        document.getElementById("saveButton").disabled = true
+        var counter =0
+        
+        
+        function saveName(){
+            var fn = document.getElementById("fullname").value
+            console.log(fn)
+            console.log("I will save name to local storage.")
+           if(typeof(Storage)!="undefined"){
+               if(fn != ""){
+                localStorage.setItem("fullname_"+counter++,fn)
+                localStorage.setItem("counterValue",counter)
+                document.getElementById("fullname").value =""
+                document.getElementById("fullname").focus()
+                document.getElementById("saveButton").disabled = true
+                console.log(localStorage.length)    
+               }
+              
+           } 
+        }
+
+        function enableButton(){
+            console.log("Changing TB")
+            document.getElementById("saveButton").disabled = false
+        }
+
+       function domLoadedSuccess(){
+           console.log("Body Load Success")
+           if(typeof(Storage)!="undefined"){
+            
+            if(localStorage.getItem("counterValue") == "null"){
+                console.log("here 1")
+                 counter = 0
+            }else{
+                var currentCounter = localStorage.getItem("counterValue")
+                 counter = parseInt(currentCounter)
+                console.log("Current Counter:" + counter)
+            }
+             
+             
+           
+           }
+
+       }
+    </script>
+</body>
+</html>
