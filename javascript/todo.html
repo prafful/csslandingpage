@@ -38,7 +38,7 @@
             //newLi.innerHTML = valueInput
             //create a button with click event
             var newButton = document.createElement("button")
-            newButton.setAttribute("onclick", "buttonClicked()")
+            newButton.setAttribute("onclick", "buttonClicked("+i+")")
             var buttonText = document.createTextNode("Done")
             newButton.appendChild(buttonText)
             //append new Button to new li
@@ -74,20 +74,20 @@
                 console.log("This browser does not support HTML5 localstorage API")
             }
             console.log(counterValue);
-            loadTodoFromLocalStorage(counterValue)
+            loadTodoFromLocalStorage()
         }
 
 
-        function loadTodoFromLocalStorage(cv){
+        function loadTodoFromLocalStorage(){
             console.log("Loading from LS " + counterValue)
-            for(i=0; i<cv; i++){
+            for(i=0; i<counterValue; i++){
                 var tempKey = "task_"+i
                 var newLi = document.createElement("li")
                 var eachTodo = localStorage.getItem(tempKey)
                 //newLi.innerHTML = eachTodo
                  //create a button with click event
                 var newButton = document.createElement("button")
-                newButton.setAttribute("onclick", "buttonClicked()")
+                newButton.setAttribute("onclick", "buttonClicked("+i+")")
                 var buttonText = document.createTextNode("Done")
                 newButton.appendChild(buttonText)
                 //append new Button to new li
@@ -101,8 +101,11 @@
 
         }
        
-       function buttonClicked(){
-           console.log("one clicked")
+       function buttonClicked(itemNumber){
+           console.log("one clicked "+ itemNumber  )
+           localStorage.removeItem("task_" + itemNumber)
+           todolistRef.removeChild(newUl)
+           loadTodoFromLocalStorage() 
        }
 
         
