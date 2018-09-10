@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ToDo in Javascript</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body onload="domLoaded()">
+    <h3>
+        Javascript ToDo With Local Storage!
+    </h3>
+    <label for="todo">Todo Item:</label>
+    <input type="text">
+    <button onclick="addTodo()">Add Todo</button>
+
+    <div id="todolist">
+
+    </div>
+
+    <script>
+        //create new ul element outside DOM. It has to be created only once!
+        var newUl = document.createElement("ol")
+        var todolistRef = document.getElementById("todolist")
+        todolistRef.innerHTML = "ToDo List items will come here!!!!"
+        var counterValue = 0
+        function addTodo() {
+            
+            console.log("DOM Creation from JS");
+            var valueInput = document.getElementsByTagName("input")[0].value
+            //save to todo to localstorage
+            saveTodo(valueInput)
+            //create new li element outside DOM. It is created for every task which is added.
+            var newLi = document.createElement("li")
+            //newLi.innerHTML = valueInput
+            //create a button with click event
+            var newButton = document.createElement("button")
+            newButton.setAttribute("onclick", "buttonClicked()")
+            var buttonText = document.createTextNode("Done")
+            newButton.appendChild(buttonText)
+            //append new Button to new li
+            newLi.innerHTML = valueInput + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+            newLi.appendChild(newButton)
+            //append new li to new ul
+            newUl.appendChild(newLi)
+            //insert new element to DOM
+            todolistRef.appendChild(newUl)
+            document.getElementsByTagName("input")[0].value = ""
+            document.getElementsByTagName("input")[0].focus()
+        }
+
+        function saveTodo(vInput){
+            //console.log(vInput)
+            localStorage.setItem("task_"+counterValue, vInput)
+            counterValue++
+            localStorage.setItem("taskCounter", counterValue)
+
+        }
+
+        function domLoaded(){
+            if(typeof(localStorage)!=undefined){
+                if(localStorage.getItem("taskCounter") == null){
+                    console.log("try1");
+                    counterValue = 0
+                }else{
+                    var currentTaskCounter = localStorage.getItem("taskCounter")
+                    console.log("try2");
+                    counterValue = parseInt(currentTaskCounter)
+                }
+            }else{
+                console.log("This browser does not support HTML5 localstorage API")
+            }
+            console.log(counterValue);
+            loadTodoFromLocalStorage(counterValue)
+        }
+
+
+        function loadTodoFromLocalStorage(cv){
+            console.log("Loading from LS " + counterValue)
+            for(i=0; i<cv; i++){
+                var tempKey = "task_"+i
+                var newLi = document.createElement("li")
+                var eachTodo = localStorage.getItem(tempKey)
+                //newLi.innerHTML = eachTodo
+                 //create a button with click event
+                var newButton = document.createElement("button")
+                newButton.setAttribute("onclick", "buttonClicked()")
+                var buttonText = document.createTextNode("Done")
+                newButton.appendChild(buttonText)
+                //append new Button to new li
+                newLi.innerHTML = eachTodo + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                newLi.appendChild(newButton)
+                //append new li to new ul
+                newUl.appendChild(newLi)               
+            }
+            todolistRef.appendChild(newUl)
+            document.getElementsByTagName("input")[0].focus()
+
+        }
+       
+       function buttonClicked(){
+           console.log("one clicked")
+       }
+
+        
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Javascript DOM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <style>
+       .para1{
+           color:blue;
+       }
+       .para2{
+           color:red;
+       }
+   </style>
+</head>
+<body >
+    <h1 id="head1">JS DOM Navigation</h1>
+    <div>
+        <h2>Demo Heading 2</h2>
+        <p class="para1">1Lorem Ipsum dorom Lodeth ika Dika Ilum. 2Lorem Ipsum dorom Lodeth ika Dika Ilum.  </p>
+        <p class="para1">3Lorem Ipsum dorom Lodeth ika Dika Ilum. 4Lorem Ipsum dorom Lodeth ika Dika Ilum. 5Lorem Ipsum dorom Lodeth ika Dika Ilum. </p>
+        <p  class="para2"> 6Lorem Ipsum dorom Lodeth ika Dika Ilum. 7Lorem Ipsum dorom Lodeth ika Dika Ilum.  </p>
+        <p>8Lorem Ipsum dorom Lodeth ika Dika Ilum. 9Lorem Ipsum dorom Lodeth ika Dika Ilum.  </p>
+        <p>10Lorem Ipsum dorom Lodeth ika Dika Ilum. 11Lorem Ipsum dorom Lodeth ika Dika Ilum.  </p>
+    </div>
+
+<script>
+    var idRef = document.getElementById("head1")
+    idRef.innerHTML = "Javascript DOM Navigation"
+
+    var tagRef = document.getElementsByTagName("p")
+    //tagRef[0].innerHTML = "I am being modified and I am para 1."
+    console.log(tagRef);
+    for(i=0; i<tagRef.length; i++){
+        tagRef[i].innerHTML  = i+"I am a new para!"
+    }
+
+
+    var classRef = document.getElementsByClassName("para1")
+    console.log(classRef);
+    classRef[0].innerHTML = "I am coming from the class"
+
+    var queryRef = document.querySelectorAll("p.para1")
+    console.log(queryRef);
+
+
+
+</script>
+</body>
+</html>
